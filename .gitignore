@@ -1,6 +1,0 @@
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.session  # Ignore session files (if any)
-*.env
