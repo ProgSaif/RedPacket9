@@ -33,7 +33,6 @@ async def handler(event):
 
     # Optionally handle other chats here as needed
     if chat_id == -1002171874012:
-        # You can add any logic for handling messages from this chat
         pass
 
 # Start the client and run it until disconnected
