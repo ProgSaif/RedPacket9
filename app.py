@@ -5,13 +5,9 @@ from telethon import TelegramClient, events
 # Retrieve API credentials from environment variables
 api_id = int(os.getenv('TELEGRAM_API_ID'))  # Set this in the Render dashboard
 api_hash = os.getenv('TELEGRAM_API_HASH')    # Set this in the Render dashboard
-phone_number = os.getenv('TELEGRAM_PHONE')    # Set this in the Render dashboard
+phone_number = os.getenv('TELEGRAM_PHONE')    # Set this in the Render dashboard (if needed for local testing)
 
-# Ensure all necessary environment variables are provided
-if not api_id or not api_hash or not phone_number:
-    raise ValueError("Missing environment variables. Please set TELEGRAM_API_ID, TELEGRAM_API_HASH, and TELEGRAM_PHONE.")
-
-# Initialize the Telegram client
+# Initialize the Telegram client with a session file (important for non-interactive login)
 client = TelegramClient('my_session', api_id, api_hash)
 
 @client.on(events.NewMessage)
@@ -42,6 +38,7 @@ async def handler(event):
     if chat_id == -1002171874012:
         pass
 
-# Start the client and run it until disconnected
-client.start(phone_number=phone_number)  # Start with phone number
+# Start the client with or without the session file
+client.start()  # No need to pass phone_number here, as 'my_session' should handle authentication
+
 client.run_until_disconnected()
