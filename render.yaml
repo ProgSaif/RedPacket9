@@ -2,13 +2,13 @@ services:
   - type: web
     name: telegram-bot-service
     env: python
-    plan: starter  # This uses the free plan
+    plan: starter
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python app.py"
     envVars:
       - key: TELEGRAM_API_ID
-        value: "26371992"  # Optional: You can keep this or remove it if you set it in the dashboard
+        value: "26371992"  # Replace with your actual Telegram API ID
       - key: TELEGRAM_API_HASH
-        value: "c58448dd41aba5eb58a1e72df5c9f9d4"  # Optional: You can keep this or remove it if you set it in the dashboard
-      - key: TELEGRAM_PHONE
-        value: "+8801866031776"  # Replace with your actual phone number, if you want to set it here
+        value: "c58448dd41aba5eb58a1e72df5c9f9d4"  # Replace with your actual API hash
+      - key: TELEGRAM_BOT_TOKEN
+        value: "6999317731:AAHd1hi7ICs7tMRaH9vFxuE43i7UTxuQsSw"  # Replace with your actual bot token
