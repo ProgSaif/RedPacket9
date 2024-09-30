@@ -3,9 +3,13 @@ import re
 from telethon import TelegramClient, events
 
 # Retrieve API credentials from environment variables
-api_id = int(os.getenv('TELEGRAM_API_ID', '26371992'))  # Default value for testing
-api_hash = os.getenv('TELEGRAM_API_HASH', 'c58448dd41aba5eb58a1e72df5c9f9d4')
-phone_number = os.getenv('TELEGRAM_PHONE', 'your_phone_number_here')  # Provide a default or leave as required
+api_id = int(os.getenv('TELEGRAM_API_ID'))  # Set this in the Render dashboard
+api_hash = os.getenv('TELEGRAM_API_HASH')    # Set this in the Render dashboard
+phone_number = os.getenv('TELEGRAM_PHONE')    # Set this in the Render dashboard
+
+# Ensure all necessary environment variables are provided
+if not api_id or not api_hash or not phone_number:
+    raise ValueError("Missing environment variables. Please set TELEGRAM_API_ID, TELEGRAM_API_HASH, and TELEGRAM_PHONE.")
 
 # Initialize the Telegram client
 client = TelegramClient(phone_number, api_id, api_hash)
@@ -31,7 +35,7 @@ async def handler(event):
             # Format the code in monospace
             formatted_code = f"`{code}`"  # Enclose the code with backticks for monospace
 
-            # Forward the formatted code to the second chat (-4510674591)
+            # Forward the formatted code to the second chat (-1002171874012)
             await client.send_message(-1002171874012, formatted_code)
 
     # Optionally handle other chats here as needed
