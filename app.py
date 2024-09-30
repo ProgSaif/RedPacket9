@@ -1,8 +1,10 @@
 import re
+import os
 from telethon import TelegramClient, events
 
-api_id = 26371992
-api_hash = 'c58448dd41aba5eb58a1e72df5c9f9d4'
+# Fetching API ID and hash from environment variables
+api_id = os.getenv('TELEGRAM_API_ID')
+api_hash = os.getenv('TELEGRAM_API_HASH')
 
 # Initialize the Telegram client
 client = TelegramClient('anon', api_id, api_hash)
