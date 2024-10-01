@@ -6,12 +6,12 @@ services:
     startCommand: "python app.py"
     envVars:
       - key: TELEGRAM_API_ID
-        value: "your_telegram_api_id_here"
+        value: "26371992"
       - key: TELEGRAM_API_HASH
-        value: "your_telegram_api_hash_here"
+        value: "c58448dd41aba5eb58a1e72df5c9f9d4"
       - key: TELEGRAM_PHONE
-        value: "your_phone_number_here"
+        value: "+8801866031776"
       - key: FROM_CHANNEL_ID
-        value: "-1001610472708"  # Change this to your source channel ID
+        value: "-1002157712325"  # Change this to your source channel ID
       - key: TO_CHANNEL_ID
-        value: "-1002171874012"  # Change this to your destination channel ID
+        value: "-4510674591"  # Change this to your destination channel ID
