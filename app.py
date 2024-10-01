@@ -1,20 +1,12 @@
-import os
 import re
-import asyncio
 from telethon import TelegramClient, events
-from aiohttp import web  # Import for dummy server
 
-# Retrieve API credentials and channel IDs from environment variables
-api_id = int(os.getenv('TELEGRAM_API_ID'))
-api_hash = os.getenv('TELEGRAM_API_HASH')
-phone_number = os.getenv('TELEGRAM_PHONE')
-from_channel_id = int(os.getenv('FROM_CHANNEL_ID'))  # Channel to listen to
-to_channel_id = int(os.getenv('TO_CHANNEL_ID'))      # Channel to forward to
+api_id = 26371992
+api_hash = 'c58448dd41aba5eb58a1e72df5c9f9d4'
 
 # Initialize the Telegram client
-client = TelegramClient('my_session', api_id, api_hash)
+client = TelegramClient('anon', api_id, api_hash)
 
-# Telegram event handler
 @client.on(events.NewMessage)
 async def handler(event):
     chat = await event.get_chat()
@@ -22,38 +14,28 @@ async def handler(event):
     print("{} {}".format(chat_id, chat))
 
     # Define a regex pattern to match the code
-    code_pattern = r'[A-Za-z0-9]{8}'
+    code_pattern = r'[A-Za-z0-9]{8}'  # Assuming the code is an 8-character alphanumeric string
 
-    # Check if the message is from the specified chat
-    if chat_id == from_channel_id:
+    # Check if the message is from the first chat (-1001610472708)
+    if chat_id == -1002468609474:
+        # Extract the code part from the message using regex
         match = re.search(code_pattern, event.raw_text)
         
         if match:
+            # Get the code from the match
             code = match.group(0)
-            formatted_code = f"`{code}`"
-            await client.send_message(to_channel_id, formatted_code)
 
-# Start the Telegram client
-async def start_telegram_client():
-    await client.start(phone_number=phone_number)
-    await client.run_until_disconnected()
+            # Format the code in monospace
+            formatted_code = f"`{code}`"  # Enclose the code with backticks for monospace
 
-# Dummy HTTP server handler
-async def handle(request):
-    return web.Response(text="The Telegram bot is running!")
+            # Forward the formatted code to the second chat (-4510674591)
+            await client.send_message(-1002412302153, formatted_code)
 
-# Start the web app and Telegram client
-async def init_app():
-    # Start the Telegram client in the background
-    asyncio.create_task(start_telegram_client())
+    # Optionally handle other chats here as needed
+    if chat_id == -1002412302153:
+        # You can add any logic for handling messages from this chat
+        pass
 
-    # Create a simple web app
-    app = web.Application()
-    app.router.add_get('/', handle)
-
-    return app
-
-# Main entry point
-if __name__ == '__main__':
-    # Run the web app on port 10000 (or any other available port)
-    web.run_app(init_app(), port=10000)
+# Start the client and run it until disconnected
+client.start()
+client.run_until_disconnected()
