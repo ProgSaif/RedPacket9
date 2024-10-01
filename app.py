@@ -1,8 +1,8 @@
 import re
 from telethon import TelegramClient, events
 
-api_id = 26371992
-api_hash = 'c58448dd41aba5eb58a1e72df5c9f9d4'
+api_id = 28607871
+api_hash = '183721dca18fce6ed2877fdcd1066a3a'
 
 # Initialize the Telegram client
 client = TelegramClient('anon', api_id, api_hash)
@@ -17,7 +17,7 @@ async def handler(event):
     code_pattern = r'[A-Za-z0-9]{8}'  # Assuming the code is an 8-character alphanumeric string
 
     # Check if the message is from the first chat (-1001610472708)
-    if chat_id == -6215913661:
+    if chat_id == -1006215913661:
         # Extract the code part from the message using regex
         match = re.search(code_pattern, event.raw_text)
         
