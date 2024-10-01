@@ -7,7 +7,7 @@ services:
     autoDeploy: true
     envVars:
       - key: TELEGRAM_API_ID
-        value: "your_api_id"  # Replace with your real API ID
+        value: "26371992"  # Replace with your real API ID
       - key: TELEGRAM_API_HASH
-        value: "your_api_hash"  # Replace with your real API Hash
+        value: "c58448dd41aba5eb58a1e72df5c9f9d4"  # Replace with your real API Hash
     plan: free
