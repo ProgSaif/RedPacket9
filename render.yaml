@@ -1,6 +1,6 @@
 services:
   - name: telegram-bot
-    type: worker  # This is the key part: changing it to a 'worker'
+    type: web
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python app.py"
