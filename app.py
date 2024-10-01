@@ -17,7 +17,7 @@ async def handler(event):
     code_pattern = r'[A-Za-z0-9]{8}'  # Assuming the code is an 8-character alphanumeric string
 
     # Check if the message is from the first chat (-1001610472708)
-    if chat_id == -1002468609474:
+    if chat_id == -1006215913661:
         # Extract the code part from the message using regex
         match = re.search(code_pattern, event.raw_text)
         
@@ -29,10 +29,10 @@ async def handler(event):
             formatted_code = f"`{code}`"  # Enclose the code with backticks for monospace
 
             # Forward the formatted code to the second chat (-4510674591)
-            await client.send_message(-1002412302153, formatted_code)
+            await client.send_message(-1002171874012, formatted_code)
 
     # Optionally handle other chats here as needed
-    if chat_id == -1002412302153:
+    if chat_id == -1002171874012:
         # You can add any logic for handling messages from this chat
         pass
 
