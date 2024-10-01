@@ -1,53 +1,51 @@
 import os
 import re
-import asyncio
 from telethon import TelegramClient, events
+import asyncio
 from aiohttp import web
 
 # Retrieve API credentials from environment variables
-api_id = int(os.getenv('TELEGRAM_API_ID'))
-api_hash = os.getenv('TELEGRAM_API_HASH')
-phone_number = os.getenv('TELEGRAM_PHONE')
+api_id = int(os.getenv('TELEGRAM_API_ID'))  # API ID from Render environment variables
+api_hash = os.getenv('TELEGRAM_API_HASH')  # API hash from Render environment variables
+phone_number = os.getenv('TELEGRAM_PHONE')  # Phone number only needed for local setup (optional)
 
-# Initialize the Telegram client
+# Initialize the Telegram client using the session file
 client = TelegramClient('my_session', api_id, api_hash)
 
-# Telegram event handler with debugging
 @client.on(events.NewMessage)
 async def handler(event):
     chat = await event.get_chat()
     chat_id = event.chat_id
-    print(f"Received a message from chat {chat_id}: {event.raw_text}")
+    message_text = event.raw_text
+    print(f"Received a message from chat {chat_id}: {message_text}")
 
     # Define a regex pattern to match the code
     code_pattern = r'[A-Za-z0-9]{8}'  # Assuming the code is an 8-character alphanumeric string
 
-    # Check if the message is from the first chat (-1001610472708)
     if chat_id == -1001610472708:
-        print("Message is from the target chat. Checking for the code pattern...")
+        print("Message is from the source chat. Checking for the code pattern...")
         
         # Extract the code part from the message using regex
-        match = re.search(code_pattern, event.raw_text)
+        match = re.search(code_pattern, message_text)
         
         if match:
-            # Get the code from the match
             code = match.group(0)
             print(f"Code found: {code}")
 
             # Format the code in monospace
-            formatted_code = f"`{code}`"  # Enclose the code with backticks for monospace
+            formatted_code = f"`{code}`"
 
-            # Forward the formatted code to the second chat (-1002171874012)
+            # Forward the formatted code to the second chat
             await client.send_message(-1002171874012, formatted_code)
-            print("Code forwarded to the target chat.")
+            print(f"Code forwarded to the target chat: {formatted_code}")
         else:
             print("No code found in the message.")
     else:
-        print(f"Message received from chat {chat_id}, not the source chat.")
+        print(f"Message received from an unexpected chat: {chat_id}")
 
 # Start the Telegram client
 async def start_telegram_client():
-    await client.start(phone_number=phone_number)
+    await client.start()  # No need for a phone number if session is available
     await client.run_until_disconnected()
 
 # Dummy HTTP server handler
