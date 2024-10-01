@@ -17,7 +17,7 @@ async def handler(event):
     code_pattern = r'[A-Za-z0-9]{8}'  # Assuming the code is an 8-character alphanumeric string
 
     # Check if the message is from the first chat (-1001610472708)
-    if chat_id == -1006215913661:
+    if chat_id == -6215913661:
         # Extract the code part from the message using regex
         match = re.search(code_pattern, event.raw_text)
         
