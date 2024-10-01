@@ -21,7 +21,7 @@ async def handler(event):
     # Define a regex pattern to match the code
     code_pattern = r'[A-Za-z0-9]{8}'  # 8-character alphanumeric string
 
-    if chat_id == -1002157712325:
+    if chat_id == -1002171874012:
         print("Message is from the source chat. Checking for code...")
         match = re.search(code_pattern, message_text)
         if match:
