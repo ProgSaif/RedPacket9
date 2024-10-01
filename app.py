@@ -1,8 +1,8 @@
 import re
 from telethon import TelegramClient, events
 
-api_id = 28607871
-api_hash = '183721dca18fce6ed2877fdcd1066a3a'
+api_id = 
+api_hash = ''
 
 # Initialize the Telegram client
 client = TelegramClient('anon', api_id, api_hash)
