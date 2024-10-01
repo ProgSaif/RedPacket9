@@ -1,13 +1,17 @@
 services:
-  - type: web
-    name: telegram-bot
+  - name: telegram-bot
+    type: web
     env: python
-    buildCommand: ""
+    buildCommand: "pip install -r requirements.txt"
     startCommand: "python app.py"
-    autoDeploy: true
     envVars:
       - key: TELEGRAM_API_ID
-        value: "26371992"  # Replace with your real API ID
+        value: "your_telegram_api_id_here"
       - key: TELEGRAM_API_HASH
-        value: "c58448dd41aba5eb58a1e72df5c9f9d4"  # Replace with your real API Hash
-    plan: free
+        value: "your_telegram_api_hash_here"
+      - key: TELEGRAM_PHONE
+        value: "your_phone_number_here"
+      - key: FROM_CHANNEL_ID
+        value: "-1001610472708"  # Change this to your source channel ID
+      - key: TO_CHANNEL_ID
+        value: "-1002171874012"  # Change this to your destination channel ID
