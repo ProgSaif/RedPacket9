@@ -4,10 +4,4 @@ services:
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python app.py"
-    envVars:
-      - key: TELEGRAM_API_ID
-        value: "28607871"
-      - key: TELEGRAM_API_HASH
-        value: "183721dca18fce6ed2877fdcd1066a3a"
-      - key: TELEGRAM_PHONE
-        value: "+8801777480864"
+   
