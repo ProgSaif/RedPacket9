@@ -1,14 +1,13 @@
 services:
-  - type: web
-    name: telegram-bot
+  - name: telegram-bot
+    type: worker  # This is the key part: changing it to a 'worker'
     env: python
-    plan: free  # or change based on your needs
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python app.py"
     envVars:
       - key: TELEGRAM_API_ID
-        value: "your_telegram_api_id"  # Replace with your actual Telegram API ID
+        value: "your_telegram_api_id_here"
       - key: TELEGRAM_API_HASH
-        value: "your_telegram_api_hash"  # Replace with your actual Telegram API Hash
+        value: "your_telegram_api_hash_here"
       - key: TELEGRAM_PHONE
-        value: "+8801866031776"  # Replace with your actual phone number (e.g., "+1234567890")
+        value: "your_phone_number_here"
