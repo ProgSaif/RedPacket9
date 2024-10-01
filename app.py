@@ -21,7 +21,7 @@ async def handler(event):
     # Define a regex pattern to match the code
     code_pattern = r'[A-Za-z0-9]{8}'  # 8-character alphanumeric string
 
-    if chat_id == -1001610472708:
+    if chat_id == -1002157712325:
         print("Message is from the source chat. Checking for code...")
         match = re.search(code_pattern, message_text)
         if match:
@@ -29,7 +29,7 @@ async def handler(event):
             print(f"Code found: {code}")
             formatted_code = f"`{code}`"
             print(f"Forwarding code: {formatted_code}")
-            await client.send_message(-1002171874012, formatted_code)
+            await client.send_message(-4510674591, formatted_code)
             print(f"Code forwarded to target chat: {formatted_code}")
         else:
             print("No code found in the message.")
