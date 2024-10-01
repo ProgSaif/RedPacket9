@@ -8,7 +8,7 @@ api_hash = '183721dca18fce6ed2877fdcd1066a3a'
 client = TelegramClient('anon', api_id, api_hash)
 
 # Define the 'from' and 'to' chat channels (support for multiple channels)
-from_channels = [-1002394486633, -1002439510384]  # List of channels to listen to
+from_channels = [-1002439510384]  # List of channels to listen to
 to_channels = [-1002171874012]    # List of channels to forward to
 
 # Define a regex pattern to match the code (still looking for 8-character alphanumeric string)
